@@ -1,0 +1,22 @@
+{
+  "name": "uploadcare-summernote",
+  "version": "1.0.0",
+  "description": "This is Uploadcare plugin for [Summernote] WYSIWYG editor. It will allow your users to upload files and images from local device, social networks, cloud storages without any backend code that is usually required to handle uploads.",
+  "main": "uploadcare.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uploadcare/uploadcare-summernote.git"
+  },
+  "keywords": [
+    "uploadcare",
+    "plugin",
+    "summernote",
+    "wysiwyg"
+  ],
+  "author": "Uploadcare",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/uploadcare/uploadcare-summernote/issues"
+  },
+  "homepage": "https://github.com/uploadcare/uploadcare-summernote#readme"
+}
