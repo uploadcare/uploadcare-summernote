@@ -19,8 +19,10 @@
 
   function createButton(context, opts) {
     return function() {
+      var icon = opts.buttonIcon ? '<i class="fa fa-' + opts.buttonIcon + '" /> ' : '';
+
       return $.summernote.ui.button({
-        contents: opts.buttonLabel,
+        contents: icon + opts.buttonLabel,
         tooltip: opts.tooltipText,
         click: function() {
           var dialog = uploadcare.openDialog({}, opts);
