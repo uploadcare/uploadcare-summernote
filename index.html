@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Uploadcare-summernote</title>
+
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./index.css">
+
+    <script src="./uploadcare.js"></script>
+
+    <script>
+      $(document).ready(function() {
+        $('#summernote').summernote({
+          uploadcare: {
+            publicKey: 'demopublickey',
+            crop: 'free',
+            tabs: 'file url instagram',
+            tooltipText: 'Upload files or video or something',
+            buttonIcon: 'picture-o',
+            multiple: true
+          },
+          toolbar: [
+            ['uploadcare', ['uploadcare']], // this is the button
+            ['style', ['style']],
+            ['font', ['bold', 'italic', 'underline', 'clear']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['height', ['height']],
+            ['table', ['table']],
+            ['insert', ['media', 'link', 'hr', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview']],
+            ['help', ['help']]
+          ]
+        })
+      })
+    </script>
+  </head>
+  <body>
+    <div class="app">
+      <div id="summernote">Hello Summernote</div>
+    </div>
+  </body>
+</html>
