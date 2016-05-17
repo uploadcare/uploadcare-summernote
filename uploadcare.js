@@ -49,7 +49,7 @@
 
   function standardCallback(context, blob) {
     context.invoke('editor.insertNode', $(
-      (blob.isImage && !blob.isCdnUrlModifiers
+      (blob.isImage
         ? [
           '<img src="',
           blob.cdnUrl + (blob.cdnUrlModifiers ? '' : '-/preview/'),
