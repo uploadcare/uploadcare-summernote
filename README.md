@@ -1,6 +1,6 @@
 # uploadcare-summernote
 
-This is Uploadcare plugin for [Summernote WYSYWIG] editor.
+This is [Uploadcare] plugin for [Summernote WYSIWYG] editor.
 It will allow your users to upload files and images from local device, social networks,
 cloud storages without any backend code that is usually required to handle uploads.
 
@@ -220,4 +220,4 @@ Uploadcare [widget documentation] to unleash full uploading power.
 [Summernote WYSYWIG]: http://summernote.org/
 [widget settings]: https://uploadcare.com/documentation/widget/#configuration
 [widget documentation]: https://uploadcare.com/documentation/widget/
-[Uploadcare]: https://uploadcare.com
+[Uploadcare]: https://uploadcare.com/?utm_source=github&utm_medium=description&utm_campaign=summernote
