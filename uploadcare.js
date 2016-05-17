@@ -37,9 +37,9 @@
   function init(context) {
     var opts = $.extend({
       crop: '',
-      version: '2.8.2',
+      version: '2.9.0',
       buttonLabel: 'Uploadcare',
-      tooltipText: 'Upload your files to Uploadcare'
+      tooltipText: 'Upload files via Uploadcare'
     }, context.options.uploadcare);
 
     ensureWidget(opts.version);
@@ -67,7 +67,7 @@
 
       $.when.apply(null, uploads).done(function() {
         var blobs = [].slice.apply(arguments);
-        var cb = opts.uploadComleteCallback;
+        var cb = opts.uploadCompleteCallback;
 
         context.invoke('editor.restoreRange');
 
