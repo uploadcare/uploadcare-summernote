@@ -11,61 +11,74 @@
     factory(window.jQuery);
   }
 }(function($) {
-  $.extend($.summernote.plugins, {
-    uploadcare: function(context) {
-      var opts = $.extend({
-        crop: '',
-        version: '2.8.2',
-        buttonLabel: 'Uploadcare',
-        tooltipText: 'Upload your files to Uploadcare'
-      }, context.options.uploadcare);
+  function ensureWidget(version) {
+    if (typeof uploadcare == 'undefined') $.getScript([
+      'https://ucarecdn.com/widget/', version, '/uploadcare/uploadcare.min.js'
+    ].join(''))
+  }
 
-      if (typeof uploadcare == 'undefined') $.getScript([
-        'https://ucarecdn.com/widget/',
-        opts.version,
-        '/uploadcare/uploadcare.min.js'
-      ].join(''))
+  function createButton(context, opts) {
+    return function() {
+      return $.summernote.ui.button({
+        contents: opts.buttonLabel,
+        tooltip: opts.tooltipText,
+        click: function() {
+          var dialog = uploadcare.openDialog({}, opts);
 
-      context.memo('button.uploadcare', function() {
-        return $.summernote.ui.button({
-          contents: opts.buttonLabel,
-          tooltip: opts.tooltipText,
-          click: function() {
-            var dialog = uploadcare.openDialog({}, opts);
+          context.invoke('editor.saveRange');
+          dialog.done(done(context, opts));
+        }
+      }).render();
+    };
+  }
 
-            context.invoke('editor.saveRange');
-            dialog.done(done(context));
-          }
-        }).render();
-      })
-    }
-  });
+  function init(context) {
+    var opts = $.extend({
+      crop: '',
+      version: '2.8.2',
+      buttonLabel: 'Uploadcare',
+      tooltipText: 'Upload your files to Uploadcare'
+    }, context.options.uploadcare);
 
-  function done(context) {
+    ensureWidget(opts.version);
+
+    context.memo('button.uploadcare', createButton(context, opts));
+  }
+
+  function standardCallback(context, blob) {
+    context.invoke('editor.insertNode', $(
+      (blob.isImage && !blob.isCdnUrlModifiers
+        ? [
+          '<img src="',
+          blob.cdnUrl + (blob.cdnUrlModifiers ? '' : '-/preview/'),
+          '" alt="', blob.name, '" />'
+        ]
+        : ['<a href="', blob.cdnUrl, '">', blob.name, '</a>']
+      ).join('')
+    ).get(0));
+  }
+
+  function done(context, opts) {
     return function(data) {
-      var opts = context.options;
       var isMultiple = opts.multiple;
       var uploads = isMultiple ? data.files() : [data];
 
-      $.when.apply(null, uploads).done(function(blob) {
+      $.when.apply(null, uploads).done(function() {
+        var blobs = [].slice.apply(arguments);
         var cb = opts.uploadComleteCallback;
 
         context.invoke('editor.restoreRange');
 
-        if ($.isFunction(cb)) {
-          cb.call(context, blob);
-        } else if (isMultiple || !blob.isImage) {
-          context.invoke('editor.insertNode', $([
-            '<a href="', blob.cdnUrl, '">', blob.name, '</a>'
-          ].join('')).get(0));
-        } else {
-          context.invoke('editor.insertNode', $([
-            '<img src="',
-            blob.cdnUrl + (blob.cdnUrlModifiers ? '' : '-/preview/'),
-            '" alt="', blob.name, '" />'
-          ].join('')).get(0))
-        }
+        $.each(blobs, function(i, blob) {
+          if ($.isFunction(cb)) {
+            cb.call(context, blob);
+          } else {
+            standardCallback(context, blob);
+          }
+        });
       });
     }
   }
+
+  $.extend($.summernote.plugins, {uploadcare: init});
 }));
