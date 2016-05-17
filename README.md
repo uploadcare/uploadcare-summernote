@@ -46,7 +46,7 @@ cloud storages without any backend code that is usually required to handle uploa
           ],
           uploadcare: {
             // button name (default is Uploadcare)
-            buttonLabel: 'Image / file'
+            buttonLabel: 'Image / file',
             // font-awesome icon name (you need to include font awesome on the page)
             buttonIcon: 'picture-o',
             // text which will be shown in button tooltip
