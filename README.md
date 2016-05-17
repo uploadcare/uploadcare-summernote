@@ -217,7 +217,7 @@ Special value `all` can be used to enable all supported sources.
 All Uploadcare widget settings are too numerous to be listed here, please read
 Uploadcare [widget documentation] to unleash full uploading power.
 
-[Summernote WYSYWIG]: http://summernote.org/
+[Summernote WYSIWYG]: http://summernote.org/
 [widget settings]: https://uploadcare.com/documentation/widget/#configuration
 [widget documentation]: https://uploadcare.com/documentation/widget/
 [Uploadcare]: https://uploadcare.com/?utm_source=github&utm_medium=description&utm_campaign=summernote
