@@ -11,24 +11,22 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="./index.css">
 
     <script src="./uploadcare.js"></script>
 
     <script>
-      $(document).ready(function() {
+      $(function() {
         $('#summernote').summernote({
-          uploadcare: {
-            publicKey: 'demopublickey',
-            crop: 'free',
-            tabs: 'file url instagram',
-            tooltipText: 'Upload files or video or something',
-            buttonIcon: 'picture-o',
-            multiple: true
-          },
+          // unfortunately you can only rewrite
+          // all the toolbar contents, on the bright side
+          // you can place uploadcare button wherever you want
           toolbar: [
-            ['uploadcare', ['uploadcare']], // this is the button
+            ['uploadcare', ['uploadcare']], // here, for example
             ['style', ['style']],
             ['font', ['bold', 'italic', 'underline', 'clear']],
             ['fontname', ['fontname']],
@@ -39,14 +37,72 @@
             ['insert', ['media', 'link', 'hr', 'picture', 'video']],
             ['view', ['fullscreen', 'codeview']],
             ['help', ['help']]
-          ]
-        })
-      })
+          ],
+          uploadcare: {
+            // button name (default is Uploadcare)
+            buttonLabel: 'Image / file',
+            // font-awesome icon name (you need to include font awesome on the page)
+            buttonIcon: 'picture-o',
+            // text which will be shown in button tooltip
+            tooltipText: 'Upload files or video or something',
+
+            // uploadcare widget options, see https://uploadcare.com/documentation/widget/#configuration
+            publicKey: 'demopublickey', // set your API key
+            crop: 'free',
+            tabs: 'all',
+            multiple: true
+          }
+        });
+      });
     </script>
   </head>
   <body>
     <div class="app">
+      <h1 class="title">Summernote demo</h1>
+
       <div id="summernote">Hello Summernote</div>
+
+      <pre><code class="js">
+        $(function() {
+          $('#summernote').summernote({
+            // unfortunately you can only rewrite
+            // all the toolbar contents, on the bright side
+            // you can place uploadcare button wherever you want
+            toolbar: [
+              ['uploadcare', ['uploadcare']], // here, for example
+              ['style', ['style']],
+              ['font', ['bold', 'italic', 'underline', 'clear']],
+              ['fontname', ['fontname']],
+              ['color', ['color']],
+              ['para', ['ul', 'ol', 'paragraph']],
+              ['height', ['height']],
+              ['table', ['table']],
+              ['insert', ['media', 'link', 'hr', 'picture', 'video']],
+              ['view', ['fullscreen', 'codeview']],
+              ['help', ['help']]
+            ],
+            uploadcare: {
+              // button name (default is Uploadcare)
+              buttonLabel: 'Image / file',
+              // font-awesome icon name (you need to include font awesome on the page)
+              buttonIcon: 'picture-o',
+              // text which will be shown in button tooltip
+              tooltipText: 'Upload files or video or something',
+
+              // uploadcare widget options,
+              // see https://uploadcare.com/documentation/widget/#configuration
+              publicKey: 'demopublickey', // set your API key
+              crop: 'free',
+              tabs: 'all',
+              multiple: true
+            }
+          });
+        });
+      </code></pre>
     </div>
+
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
   </body>
 </html>
