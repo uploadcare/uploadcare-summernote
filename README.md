@@ -4,6 +4,10 @@ This is [Uploadcare] plugin for [Summernote WYSIWYG] editor.
 It will allow your users to upload files and images from local device, social networks,
 cloud storages without any backend code that is usually required to handle uploads.
 
+## See it in action
+
+<a href="https://uploadcare.github.io/uploadcare-summernote/" target="_blank">Demo</a>
+
 ## Installation & configuration
 
 1. Include plugin code on the page with Summernote:
